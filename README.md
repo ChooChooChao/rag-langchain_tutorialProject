@@ -22,3 +22,7 @@ This repository exists to:
 
 ## 📝 Notes
 This project is **not an original work**. It is a personal learning exercise based on the tutorial above.
+
+## Results
+- Using the HuggingFace model generated significantly worse responses to prompts compared to OpenAI model seen in the video.
+  - Somethings that could be tweaked to improve this include the model_id, or other hyperparamters like k, chunk_size, or overlap
