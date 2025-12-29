@@ -2,7 +2,8 @@ from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 from langchain_community.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
+
 
 import os
 import shutil
@@ -32,9 +33,9 @@ def load_documents():
 
 def split_text(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size = 1000,
+        chunk_size = 500,
 
-        chunk_overlap = 500,
+        chunk_overlap = 100,
         length_function = len,
         add_start_index = True,
     )
