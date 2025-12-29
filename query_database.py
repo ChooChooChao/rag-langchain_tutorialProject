@@ -8,6 +8,7 @@ from langchain.prompts import ChatPromptTemplate
 
 CHROMA_PATH = "chroma"
 
+# Prompt structure that is passed to the Model to get response
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:
 
@@ -37,6 +38,7 @@ def main():
         print(f"Unable to find matching results.")
         return
 
+    # Generates the prompt using the template defined above
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
@@ -44,7 +46,6 @@ def main():
 
     model = load_local_llm() # chose to keep everything local instead of using OpenAI
     response_text = model(prompt) # removed predict since HuggingFace is not a ChatModel
-
 
     sources = [doc.metadata.get("source", None) for doc, _score in results]
     formatted_response = f"Response: {response_text}\nSources: {sources}"
